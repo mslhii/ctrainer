@@ -2,9 +2,13 @@
  * DrawView.java
  * 
  * Paint example code borrowed from tutorial for purposes
+ * 
  */
 
 package com.example.cursivetrainer;
+
+import java.io.File;
+import java.io.FileOutputStream;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -12,6 +16,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.os.Environment;
+import android.text.format.Time;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -125,6 +131,36 @@ public class DrawView extends View implements OnTouchListener {
 		}
 		return true;
 	}  
+	
+	public void saveImage(Bitmap bmp) 
+	{
+	    String root = Environment.getExternalStorageDirectory().toString();
+	    //String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+	    File dir = new File(root + "/cursive_trainer_images");
+	    if(dir.isDirectory())
+	    {
+	    	dir.mkdirs();
+	    }
+	    String fname = "CursiveLetter-"+ System.currentTimeMillis() +".jpg";
+	    File file = new File (dir, fname);
+	    if (file.exists()) 
+    	{
+	    	file.delete(); 
+    	}
+	    
+	    try 
+	    {
+	           FileOutputStream out = new FileOutputStream(file);
+	           bmp.compress(Bitmap.CompressFormat.JPEG, 90, out);
+	           out.flush();
+	           out.close();
+
+	    } 
+	    catch (Exception e) 
+	    {
+	           e.printStackTrace();
+	    }
+	}
 }
 
 class Dot {
