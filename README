@@ -4,7 +4,7 @@ Created 2014 by mslhii
 
 Only for 7-inch tablets (Samsung Galaxy Note/Tab 7/8, Nexus 7)
 
-Version 0.1.5 EARLY BETA
+Version 0.1.7 BETA
 
 Features
 ========
@@ -14,11 +14,12 @@ Features
 *Answer button to display final picture of letter to user
 *Freestyle and practice modes for individual practice
 *Separate screen to apply skills to writing words
+*Save picture to device for comparisons/teaching
 
 Future Features
 ===============
-*Save picture to device for teaching?
 *"Trace the dots" to make it easier for students to learn
 *Generate words for user to write?
-*UI Improvements and polishing
-*Add support for different screen sizes
+*UI Improvements and polishing (WIP)
+*Add support for different screen sizes (WIP)
+*Video tutorial mode needs media (WIP)
