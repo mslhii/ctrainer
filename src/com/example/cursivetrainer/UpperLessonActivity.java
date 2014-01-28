@@ -91,13 +91,13 @@ public class UpperLessonActivity extends LessonActivity {
 	@Override
 	protected int getLayoutID() {
 		// TODO Auto-generated method stub
-		return R.id.capital_drawview_layout;
+		return R.id.capitallesson_layout;
 	}
 
 	@Override
 	protected int getViewID() {
 		// TODO Auto-generated method stub
-		return R.layout.capital_draw_layout;
+		return R.layout.capital_lesson_layout;
 	}
 }
 

@@ -102,20 +102,25 @@ public abstract class DrawActivity extends Activity {
             public void onClick(View v) {
                 mDrawView.saveImage(mDrawView.mBitmap);
                 
-                String fileMsg = "file://" + Environment.getExternalStorageDirectory();
-                
-                // Display saved image in gallery
-                sendBroadcast(new Intent(
-                		Intent.ACTION_MEDIA_MOUNTED,
-                		            Uri.parse(fileMsg)));
-                
-                sendNotification("Cursive Trainer Image", "Image has been saved to: " + fileMsg, fileMsg);
+                //TODO: better to use this or try-catch exception handling?
+                if (isExternalStorageWritable() && isExternalStorageReadable())
+                {
+	                String fileMsg = "file://" + Environment.getExternalStorageDirectory();
+	                
+	                // Display saved image in gallery
+	                sendBroadcast(new Intent(
+	                		Intent.ACTION_MEDIA_MOUNTED,
+	                		            Uri.parse(fileMsg)));
+	                
+	                sendNotification("Cursive Trainer Image", "Image has been saved to: " + fileMsg, fileMsg);
+                }
             	
             	Log.d(TAG, "Save button pressed!");
             }
         });
 	}
 	
+	@SuppressWarnings("deprecation")
 	protected void sendNotification(String title, String msg, String filePath) 
 	{
 		NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -131,14 +136,25 @@ public abstract class DrawActivity extends Activity {
 		notificationManager.notify(NOTIFICATION_ID, notification);
 	}
 
+	/**
+	 * Creates instructions for the lesson activities
+	 * @param input
+	 * @return
+	 */
 	protected String buildString(String[] input)
 	{
 		String fin = "";
 		int arrSize = input.length;
 		
-		for(int i = 0; i < (arrSize / 2); i++)
+		for(int i = 0; i < arrSize; i++)
 		{
-			fin = fin + input[i] + "\n" + input[i + (arrSize / 2)] + "\n";
+			fin = fin + input[i] + "\n";
+			
+			// Insert line break where English and Chinese instructions split
+			if(i == ((arrSize / 2) - 1))
+			{
+				fin = fin + "\n";
+			}
 		}
 		
 		return fin;
@@ -151,6 +167,25 @@ public abstract class DrawActivity extends Activity {
 
 		Random r = new Random();
 		return r.nextInt(max - min + 1) + min;
+	}
+	
+	/* Checks if external storage is available for read and write */
+	protected boolean isExternalStorageWritable() {
+	    String state = Environment.getExternalStorageState();
+	    if (Environment.MEDIA_MOUNTED.equals(state)) {
+	        return true;
+	    }
+	    return false;
+	}
+
+	/* Checks if external storage is available to at least read */
+	protected boolean isExternalStorageReadable() {
+	    String state = Environment.getExternalStorageState();
+	    if (Environment.MEDIA_MOUNTED.equals(state) ||
+	        Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+	        return true;
+	    }
+	    return false;
 	}
 
 	@Override
