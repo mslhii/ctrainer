@@ -28,6 +28,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
+import android.widget.Toast;
 
 public abstract class DrawActivity extends Activity {
 	
@@ -102,17 +103,28 @@ public abstract class DrawActivity extends Activity {
             public void onClick(View v) {
                 mDrawView.saveImage(mDrawView.mBitmap);
                 
+                //String fileMsg = "file://" + 
+                //		Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) +
+                //		"/cursive_trainer_images";
+                String fileMsg = "file://" + Environment.getExternalStorageDirectory() + "/cursive_trainer_images";
+                
+                Toast.makeText(DrawActivity.this,
+                		"Saving image to: " + fileMsg, Toast.LENGTH_SHORT).show();
+                
                 //TODO: better to use this or try-catch exception handling?
                 if (isExternalStorageWritable() && isExternalStorageReadable())
                 {
-	                String fileMsg = "file://" + Environment.getExternalStorageDirectory();
-	                
 	                // Display saved image in gallery
 	                sendBroadcast(new Intent(
 	                		Intent.ACTION_MEDIA_MOUNTED,
 	                		            Uri.parse(fileMsg)));
 	                
 	                sendNotification("Cursive Trainer Image", "Image has been saved to: " + fileMsg, fileMsg);
+                }
+                else
+                {
+                	Toast.makeText(DrawActivity.this,
+                    		"Image cannot be saved! Please check your external storage", Toast.LENGTH_SHORT).show();
                 }
             	
             	Log.d(TAG, "Save button pressed!");

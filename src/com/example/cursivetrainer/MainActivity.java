@@ -17,13 +17,21 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainActivity extends Activity {
 
+	/*
 	private Button mPracticeBtn;
 	private Button mLessonBtn;
 	private Button mWordBtn;
 	private Button mFreeBtn;
+	*/
+	
+	private ImageButton mPracticeBtn;
+	private ImageButton mLessonBtn;
+	private ImageButton mWordBtn;
+	private ImageButton mFreeBtn;
 	
 	private final static int LESSON_ALL = 0;
 	private final static int LESSON_ONE = 1;
@@ -55,7 +63,7 @@ public class MainActivity extends Activity {
     
     private void SetLowerPracticeButton()
     {
-        mPracticeBtn = (Button) findViewById(R.id.main_lower_practice_button);
+        mPracticeBtn = (ImageButton) findViewById(R.id.lcp);
         mPracticeBtn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -67,7 +75,7 @@ public class MainActivity extends Activity {
     
     private void SetUpperPracticeButton()
     {
-        mPracticeBtn = (Button) findViewById(R.id.main_upper_practice_button);
+        mPracticeBtn = (ImageButton) findViewById(R.id.ucp);
         mPracticeBtn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -79,7 +87,7 @@ public class MainActivity extends Activity {
     
     private void SetWordButton()
     {
-    	mWordBtn = (Button) findViewById(R.id.main_words_button);
+    	mWordBtn = (ImageButton) findViewById(R.id.lw);
         mWordBtn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -91,7 +99,7 @@ public class MainActivity extends Activity {
     
     private void SetFreestyleButton()
     {
-    	mFreeBtn = (Button) findViewById(R.id.main_freestyle_button);
+    	mFreeBtn = (ImageButton) findViewById(R.id.fw);
         mFreeBtn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -103,7 +111,7 @@ public class MainActivity extends Activity {
     
     private void SetLowerLessonButton()
     {
-    	mLessonBtn = (Button) findViewById(R.id.main_lower_lessons_button);
+    	mLessonBtn = (ImageButton) findViewById(R.id.lcl);
         mLessonBtn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -162,7 +170,7 @@ public class MainActivity extends Activity {
     
     private void SetUpperLessonButton()
     {
-    	mLessonBtn = (Button) findViewById(R.id.main_upper_lessons_button);
+    	mLessonBtn = (ImageButton) findViewById(R.id.ucl);
         mLessonBtn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {

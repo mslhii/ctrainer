@@ -21,6 +21,7 @@ import android.text.format.Time;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.Toast;
 
 public class DrawView extends View implements OnTouchListener {
 
@@ -134,8 +135,8 @@ public class DrawView extends View implements OnTouchListener {
 	
 	public void saveImage(Bitmap bmp) 
 	{
-	    String root = Environment.getExternalStorageDirectory().toString();
-	    //String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+		File root = Environment.getExternalStorageDirectory();
+		//File root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 	    File dir = new File(root + "/cursive_trainer_images");
 	    if(dir.isDirectory())
 	    {
@@ -158,7 +159,10 @@ public class DrawView extends View implements OnTouchListener {
 	    } 
 	    catch (Exception e) 
 	    {
-	           e.printStackTrace();
+	    	Toast.makeText(context,
+            		"Image cannot be saved to" + file.toString() + 
+            		", error is: " + e.toString(), Toast.LENGTH_LONG).show();
+	    	e.printStackTrace();
 	    }
 	}
 }
