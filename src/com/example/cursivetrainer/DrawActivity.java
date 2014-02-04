@@ -11,13 +11,13 @@
 package com.example.cursivetrainer;
 
 import java.util.Random;
-
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -101,24 +101,24 @@ public abstract class DrawActivity extends Activity {
         {      	
             @Override
             public void onClick(View v) {
-                mDrawView.saveImage(mDrawView.mBitmap);
-                
-                //String fileMsg = "file://" + 
-                //		Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) +
-                //		"/cursive_trainer_images";
-                String fileMsg = "file://" + Environment.getExternalStorageDirectory() + "/cursive_trainer_images";
+                String fileMsg = mDrawView.saveImage(mDrawView.mBitmap);
                 
                 Toast.makeText(DrawActivity.this,
                 		"Saving image to: " + fileMsg, Toast.LENGTH_SHORT).show();
                 
-                //TODO: better to use this or try-catch exception handling?
                 if (isExternalStorageWritable() && isExternalStorageReadable())
                 {
 	                // Display saved image in gallery
-	                sendBroadcast(new Intent(
-	                		Intent.ACTION_MEDIA_MOUNTED,
-	                		            Uri.parse(fileMsg)));
-	                
+                	// Refresh gallery to display image
+                	MediaScannerConnection.scanFile(DrawActivity.this, new String[]{fileMsg}, null,
+                            new MediaScannerConnection.OnScanCompletedListener() 
+                	{
+						@Override
+						public void onScanCompleted(final String path, final Uri uri) 
+						{
+						    Log.i(TAG, String.format("Scanned path %s -> URI = %s", path, uri.toString()));
+						}
+					});
 	                sendNotification("Cursive Trainer Image", "Image has been saved to: " + fileMsg, fileMsg);
                 }
                 else

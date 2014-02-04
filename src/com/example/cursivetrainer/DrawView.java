@@ -133,11 +133,10 @@ public class DrawView extends View implements OnTouchListener {
 		return true;
 	}  
 	
-	public void saveImage(Bitmap bmp) 
+	public String saveImage(Bitmap bmp) 
 	{
 		File root = Environment.getExternalStorageDirectory();
-		//File root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-	    File dir = new File(root + "/cursive_trainer_images");
+	    File dir = new File(root + File.separator + "cursive_trainer_images");
 	    if(dir.isDirectory())
 	    {
 	    	dir.mkdirs();
@@ -155,7 +154,6 @@ public class DrawView extends View implements OnTouchListener {
 	           bmp.compress(Bitmap.CompressFormat.JPEG, 90, out);
 	           out.flush();
 	           out.close();
-
 	    } 
 	    catch (Exception e) 
 	    {
@@ -164,6 +162,9 @@ public class DrawView extends View implements OnTouchListener {
             		", error is: " + e.toString(), Toast.LENGTH_LONG).show();
 	    	e.printStackTrace();
 	    }
+	    
+	    // Return path image saved to
+	    return dir.toString() + "/" + fname;
 	}
 }
 
