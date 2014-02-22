@@ -65,6 +65,7 @@ public abstract class LessonActivity extends DrawActivity {
         {      	
             @Override
             public void onClick(View v) {
+            	final VideoView videoview;
                 AlertDialog.Builder builder = new AlertDialog.Builder(LessonActivity.this);
                 LayoutInflater inflater = LessonActivity.this.getLayoutInflater();  
                 builder.setTitle("Video Tutorial (Temporary Video Placeholder)"); //TODO: fix when feature complete
@@ -76,6 +77,7 @@ public abstract class LessonActivity extends DrawActivity {
                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                            public void onClick(DialogInterface dialog, int id) {
                                // User cancelled the dialog
+                        	   //videoview.start();
                            }
                        });
                 // Create the AlertDialog object and return it
@@ -83,8 +85,16 @@ public abstract class LessonActivity extends DrawActivity {
                 alert.show();
                 
                 // Play the video after the view has been set
-                final VideoView videoview = (VideoView) alert.findViewById(R.id.videoview);
-                Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.rollin); //TODO: fix this when instructions created
+                videoview = (VideoView) alert.findViewById(R.id.videoview);
+                Uri uri;
+                if (mLetter.videoString != INVALID_RESOURCE)
+                {
+                	uri = Uri.parse("android.resource://"+getPackageName()+"/"+mLetter.videoString);
+                }
+                else //TODO: fix this when instructions created
+                {
+                	uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.rollin);
+                }
                 videoview.setVideoURI(uri);
                 videoview.start();
                 

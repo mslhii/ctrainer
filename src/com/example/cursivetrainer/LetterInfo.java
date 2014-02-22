@@ -15,6 +15,7 @@ public class LetterInfo
 	char letter;
 	String[] info;
 	int resourceString;
+	int videoString;
 	
 	private final int INVALID_LETTER = 255;
 	private final int INVALID_RESOURCE = -1;
@@ -24,6 +25,7 @@ public class LetterInfo
 		this.letter = INVALID_LETTER;
 		this.info = null;
 		this.resourceString = INVALID_RESOURCE;
+		this.videoString = INVALID_RESOURCE;
 	}
 	
 	public LetterInfo(char letter, String[] info)
@@ -40,6 +42,7 @@ public class LetterInfo
 			this.info = res.getStringArray(R.array.a_instructions);
 			this.letter = 'a';
 			this.resourceString = R.raw.a;
+			this.videoString = R.raw.al;
 			break;
 		case 1:
 			this.info = res.getStringArray(R.array.b_instructions);
@@ -50,6 +53,7 @@ public class LetterInfo
 			this.info = res.getStringArray(R.array.c_instructions);
 			this.letter = 'c';
 			this.resourceString = R.raw.c;
+			this.videoString = R.raw.cl;
 			break;
 		case 3:
 			this.info = res.getStringArray(R.array.d_instructions);
@@ -180,6 +184,7 @@ public class LetterInfo
 			this.info = res.getStringArray(R.array.upper_a_instructions);
 			this.letter = 'A';
 			this.resourceString = R.raw.upper_a;
+			this.videoString = R.raw.ac;
 			break;
 		case 1:
 			this.info = res.getStringArray(R.array.upper_b_instructions);

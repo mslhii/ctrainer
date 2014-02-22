@@ -40,6 +40,7 @@ public abstract class DrawActivity extends Activity {
     
     public final static int DRAWVIEW_ID = 10;
     protected final static int NOTIFICATION_ID = 9999;
+    protected final static int INVALID_RESOURCE = -1;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
