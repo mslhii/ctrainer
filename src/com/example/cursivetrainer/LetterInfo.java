@@ -15,7 +15,16 @@ public class LetterInfo
 	char letter;
 	String[] info;
 	int resourceString;
-	int videoString;
+	int videoString; //TODO: remove when all streaming is fixed
+	String videoURI;
+	//final char[] clockLetters = {'a','c','o','d','g','q'};
+	//final char[] hillLetters = {'n','m','v','x','y','z'};
+	//final char[] loopLetters = {'e','l','b','f','h','k'};
+	//final char[] lineLetters = {'i','t','j','p','r','s', 'u', 'w'};
+	final int[] clockLetters = {0, 2, 14, 3, 6, 16};
+	final int[] hillLetters = {13, 12, 21, 23, 24, 25};
+	final int[] loopLetters = {4, 11, 1, 5, 7, 10};
+	final int[] lineLetters = {8, 19, 9, 15, 17, 18, 20, 22};
 	
 	private final int INVALID_LETTER = 255;
 	private final int INVALID_RESOURCE = -1;
@@ -42,7 +51,8 @@ public class LetterInfo
 			this.info = res.getStringArray(R.array.a_instructions);
 			this.letter = 'a';
 			this.resourceString = R.raw.a;
-			this.videoString = R.raw.al;
+			//this.videoString = R.raw.al;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/22280001/al.mp4";
 			break;
 		case 1:
 			this.info = res.getStringArray(R.array.b_instructions);
@@ -53,7 +63,8 @@ public class LetterInfo
 			this.info = res.getStringArray(R.array.c_instructions);
 			this.letter = 'c';
 			this.resourceString = R.raw.c;
-			this.videoString = R.raw.cl;
+			//this.videoString = R.raw.cl;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/22280001/cl.mp4";
 			break;
 		case 3:
 			this.info = res.getStringArray(R.array.d_instructions);
@@ -184,7 +195,8 @@ public class LetterInfo
 			this.info = res.getStringArray(R.array.upper_a_instructions);
 			this.letter = 'A';
 			this.resourceString = R.raw.upper_a;
-			this.videoString = R.raw.ac;
+			//this.videoString = R.raw.ac;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/22280001/ac.mp4";
 			break;
 		case 1:
 			this.info = res.getStringArray(R.array.upper_b_instructions);

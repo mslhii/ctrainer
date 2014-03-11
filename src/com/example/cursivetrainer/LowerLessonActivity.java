@@ -30,10 +30,11 @@ public class LowerLessonActivity extends LessonActivity {
 		// Get parameter from main activity
 		int lessonChoice = INVALID_SELECTION;
 		Bundle extras = getIntent().getExtras();
-		if (extras != null) {
-		    lessonChoice = extras.getInt("LESSON_ID");
+		if (extras != null) 
+		{
+		    mLessonChoice = lessonChoice = extras.getInt("LESSON_ID");
 		    mLoopNumber = extras.getInt("LOOP_NUMBER");
-		    mLetterPick = extras.getInt("LETTER_PICK");
+		    mLetterPick = extras.getInt("LETTER_PICK"); //letter or group choice from picker
 		}
 		
 		// Determine which lesson mode we need to enter
@@ -46,6 +47,7 @@ public class LowerLessonActivity extends LessonActivity {
 			switch(lessonChoice)
 			{
 			case 0:
+			case 3:
 				mLetter.determineLowerLetter(mLoopNumber, res);
 				break;
 			case 1:

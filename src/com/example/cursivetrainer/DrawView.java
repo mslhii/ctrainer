@@ -17,7 +17,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.Environment;
-import android.text.format.Time;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;

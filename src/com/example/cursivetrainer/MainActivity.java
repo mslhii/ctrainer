@@ -19,15 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class MainActivity extends Activity {
-
-	/*
-	private Button mPracticeBtn;
-	private Button mLessonBtn;
-	private Button mWordBtn;
-	private Button mFreeBtn;
-	*/
-	
+public class MainActivity extends Activity {	
 	private ImageButton mPracticeBtn;
 	private ImageButton mLessonBtn;
 	private ImageButton mWordBtn;
@@ -36,6 +28,7 @@ public class MainActivity extends Activity {
 	private final static int LESSON_ALL = 0;
 	private final static int LESSON_ONE = 1;
 	private final static int LESSON_RANDOM = 2;
+	private final static int LESSON_GROUP = 3;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -116,7 +109,7 @@ public class MainActivity extends Activity {
 
             public void onClick(View v) {
             	final CharSequence[] items = {
-                        "All letters in ABC order", "One letter only", "Random letter"
+                        "All letters in ABC order", "One letter only", "Random letter", "By Group",
                 };
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -138,6 +131,10 @@ public class MainActivity extends Activity {
                     		break;
                     	case LESSON_RANDOM:
                     		choice = LESSON_RANDOM;
+                    		break;
+                    	case LESSON_GROUP:
+                    		choice = LESSON_GROUP;
+                    		needsPick = true;
                     		break;
                 		default:
                 			choice = -1;
