@@ -51,7 +51,7 @@ import android.widget.RelativeLayout;
 	                "N/n", 
 	                "O/o",
 	                "P/p", 
-	                "Q/q", 
+	                "Qu/qu", 
 	                "R/r",
 	                "S/s", 
 	                "T/t", 
@@ -64,10 +64,10 @@ import android.widget.RelativeLayout;
 	        };
 			
 			final CharSequence[] groups = {
-	                "Clock Letters/Ê±ÖÓ×ÖÄ¸", 
-	                "Hill Letters/É½Çð×ÖÄ¸", 
-	                "Loop Letters/È¦È¦×ÖÄ¸",
-	                "Line Letters/ÏßÌõ×ÖÄ¸"
+	                "Clock Letters/æ—¶é’Ÿå­—ç¬¦", 
+	                "Hill Letters/å­—ç¬¦", 
+	                "Loop Letters/å­—ç¬¦",
+	                "Line Letters/å­—ç¬¦"
 	        };
 
 	        AlertDialog.Builder builder = new AlertDialog.Builder(LessonPickerActivity.this);

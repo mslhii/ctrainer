@@ -51,7 +51,6 @@ public class LetterInfo
 			this.info = res.getStringArray(R.array.a_instructions);
 			this.letter = 'a';
 			this.resourceString = R.raw.a;
-			//this.videoString = R.raw.al;
 			this.videoURI = "https://dl.dropboxusercontent.com/u/22280001/al.mp4";
 			break;
 		case 1:
@@ -63,13 +62,13 @@ public class LetterInfo
 			this.info = res.getStringArray(R.array.c_instructions);
 			this.letter = 'c';
 			this.resourceString = R.raw.c;
-			//this.videoString = R.raw.cl;
 			this.videoURI = "https://dl.dropboxusercontent.com/u/22280001/cl.mp4";
 			break;
 		case 3:
 			this.info = res.getStringArray(R.array.d_instructions);
 			this.letter = 'd';
 			this.resourceString = R.raw.d;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/22280001/dl.mp4";
 			break;
 		case 4:
 			this.info = res.getStringArray(R.array.e_instructions);
@@ -85,6 +84,7 @@ public class LetterInfo
 			this.info = res.getStringArray(R.array.g_instructions);
 			this.letter = 'g';
 			this.resourceString = R.raw.g;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/22280001/gl.mp4";
 			break;
 		case 7:
 			this.info = res.getStringArray(R.array.h_instructions);
@@ -125,6 +125,7 @@ public class LetterInfo
 			this.info = res.getStringArray(R.array.o_instructions);
 			this.letter = 'o';
 			this.resourceString = R.raw.o;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/22280001/ol.mp4";
 			break;
 		case 15:
 			this.info = res.getStringArray(R.array.p_instructions);
@@ -135,6 +136,7 @@ public class LetterInfo
 			this.info = res.getStringArray(R.array.q_instructions);
 			this.letter = 'q';
 			this.resourceString = R.raw.q;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/22280001/qul.mp4";
 			break;
 		case 17:
 			this.info = res.getStringArray(R.array.r_instructions);
