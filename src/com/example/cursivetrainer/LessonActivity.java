@@ -44,6 +44,7 @@ public abstract class LessonActivity extends DrawActivity {
     protected static int mLetterPick;
     protected static int mLessonChoice;
     protected static int mGroupIter;
+    private static ProgressDialog progressDialog;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,9 +72,10 @@ public abstract class LessonActivity extends DrawActivity {
             @Override
             public void onClick(View v) {
             	final VideoView videoview;
+            	progressDialog = ProgressDialog.show(LessonActivity.this, "", "Loading...", true);
                 AlertDialog.Builder builder = new AlertDialog.Builder(LessonActivity.this);
                 LayoutInflater inflater = LessonActivity.this.getLayoutInflater();  
-                builder.setTitle("Video Tutorial (Temporary Video Placeholder)"); //TODO: fix when feature complete
+                builder.setTitle("Video Tutorial");
                 builder.setView(inflater.inflate(R.layout.video_dialog, null))
                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                            public void onClick(DialogInterface dialog, int id) {
@@ -112,6 +114,7 @@ public abstract class LessonActivity extends DrawActivity {
                 }
                 videoview.setVideoURI(uri);
                 videoview.start();  
+                progressDialog.dismiss();
                 videoview.requestFocus();
             	
             	Log.d(TAG, "Video button pressed!");
@@ -133,7 +136,6 @@ public abstract class LessonActivity extends DrawActivity {
             @Override
             public void onClick(View v) {
             	// Use the Builder class for convenient dialog construction
-            	//String stringBuilder = buildString(mLetter.info);
                 AlertDialog.Builder builder = new AlertDialog.Builder(LessonActivity.this);
                 LayoutInflater inflater = LessonActivity.this.getLayoutInflater();
                 builder.setTitle("Picture");

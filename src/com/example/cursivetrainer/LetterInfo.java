@@ -1,5 +1,5 @@
-/**
- * LetterInfo.java
+ 
+/** LetterInfo.java
  * 
  * Class that represents a letter (both lower and upper case) as well its information for displaying info on the screen
  * 
@@ -51,137 +51,157 @@ public class LetterInfo
 			this.info = res.getStringArray(R.array.a_instructions);
 			this.letter = 'a';
 			this.resourceString = R.raw.a;
-			this.videoURI = "https://dl.dropboxusercontent.com/u/22280001/al.mp4";
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/al.mp4";
 			break;
 		case 1:
 			this.info = res.getStringArray(R.array.b_instructions);
 			this.letter = 'b';
 			this.resourceString = R.raw.b;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/bl.mp4";
 			break;
 		case 2:
 			this.info = res.getStringArray(R.array.c_instructions);
 			this.letter = 'c';
 			this.resourceString = R.raw.c;
-			this.videoURI = "https://dl.dropboxusercontent.com/u/22280001/cl.mp4";
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/cl.mp4";
 			break;
 		case 3:
 			this.info = res.getStringArray(R.array.d_instructions);
 			this.letter = 'd';
 			this.resourceString = R.raw.d;
-			this.videoURI = "https://dl.dropboxusercontent.com/u/22280001/dl.mp4";
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/dl.mp4";
 			break;
 		case 4:
 			this.info = res.getStringArray(R.array.e_instructions);
 			this.letter = 'e';
 			this.resourceString = R.raw.e;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/el.mp4";
 			break;
 		case 5:
 			this.info = res.getStringArray(R.array.f_instructions);
 			this.letter = 'f';
 			this.resourceString = R.raw.f;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/fl.mp4";
 			break;
 		case 6:
 			this.info = res.getStringArray(R.array.g_instructions);
 			this.letter = 'g';
 			this.resourceString = R.raw.g;
-			this.videoURI = "https://dl.dropboxusercontent.com/u/22280001/gl.mp4";
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/gl.mp4";
 			break;
 		case 7:
 			this.info = res.getStringArray(R.array.h_instructions);
 			this.letter = 'h';
 			this.resourceString = R.raw.h;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/hl.mp4";
 			break;
 		case 8:
 			this.info = res.getStringArray(R.array.i_instructions);
 			this.letter = 'i';
 			this.resourceString = R.raw.i;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/il.mp4";
 			break;
 		case 9:
 			this.info = res.getStringArray(R.array.j_instructions);
 			this.letter = 'j';
 			this.resourceString = R.raw.j;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/jl.mp4";
 			break;
 		case 10:
 			this.info = res.getStringArray(R.array.k_instructions);
 			this.letter = 'k';
 			this.resourceString = R.raw.k;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/kl.mp4";
 			break;
 		case 11:
 			this.info = res.getStringArray(R.array.l_instructions);
 			this.letter = 'l';
 			this.resourceString = R.raw.l;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/ll.mp4";
 			break;
 		case 12:
 			this.info = res.getStringArray(R.array.m_instructions);
 			this.letter = 'm';
 			this.resourceString = R.raw.m;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/ml.mp4";
 			break;
 		case 13:
 			this.info = res.getStringArray(R.array.n_instructions);
 			this.letter = 'n';
 			this.resourceString = R.raw.n;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/nl.mp4";
 			break;
 		case 14:
 			this.info = res.getStringArray(R.array.o_instructions);
 			this.letter = 'o';
 			this.resourceString = R.raw.o;
-			this.videoURI = "https://dl.dropboxusercontent.com/u/22280001/ol.mp4";
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/ol.mp4";
 			break;
 		case 15:
 			this.info = res.getStringArray(R.array.p_instructions);
 			this.letter = 'p';
 			this.resourceString = R.raw.p;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/pl.mp4";
 			break;
 		case 16:
 			this.info = res.getStringArray(R.array.q_instructions);
 			this.letter = 'q';
 			this.resourceString = R.raw.q;
-			this.videoURI = "https://dl.dropboxusercontent.com/u/22280001/qul.mp4";
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/qul.mp4";
 			break;
 		case 17:
 			this.info = res.getStringArray(R.array.r_instructions);
 			this.letter = 'r';
 			this.resourceString = R.raw.r;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/rl.mp4";
 			break;
 		case 18:
 			this.info = res.getStringArray(R.array.s_instructions);
 			this.letter = 's';
 			this.resourceString = R.raw.s;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/sl.mp4";
 			break;
 		case 19:
 			this.info = res.getStringArray(R.array.t_instructions);
 			this.letter = 't';
 			this.resourceString = R.raw.t;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/tl.mp4";
 			break;
 		case 20:
 			this.info = res.getStringArray(R.array.u_instructions);
 			this.letter = 'u';
 			this.resourceString = R.raw.u;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/ul.mp4";
 			break;
 		case 21:
 			this.info = res.getStringArray(R.array.v_instructions);
 			this.letter = 'v';
 			this.resourceString = R.raw.v;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/vl.mp4";
 			break;
 		case 22:
 			this.info = res.getStringArray(R.array.w_instructions);
 			this.letter = 'w';
 			this.resourceString = R.raw.w;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/wl.mp4";
 			break;
 		case 23:
 			this.info = res.getStringArray(R.array.x_instructions);
 			this.letter = 'x';
 			this.resourceString = R.raw.x;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/xl.mp4";
 			break;
 		case 24:
 			this.info = res.getStringArray(R.array.y_instructions);
 			this.letter = 'y';
 			this.resourceString = R.raw.y;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/yl.mp4";
 			break;
 		case 25:
 			this.info = res.getStringArray(R.array.z_instructions);
 			this.letter = 'z';
 			this.resourceString = R.raw.z;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276232652/zl.mp4";
 			break;
 		default:
 			this.info = null;
@@ -197,8 +217,7 @@ public class LetterInfo
 			this.info = res.getStringArray(R.array.upper_a_instructions);
 			this.letter = 'A';
 			this.resourceString = R.raw.upper_a;
-			//this.videoString = R.raw.ac;
-			this.videoURI = "https://dl.dropboxusercontent.com/u/22280001/ac.mp4";
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276237908/ac.mp4";
 			break;
 		case 1:
 			this.info = res.getStringArray(R.array.upper_b_instructions);
@@ -214,6 +233,7 @@ public class LetterInfo
 			this.info = res.getStringArray(R.array.upper_d_instructions);
 			this.letter = 'D';
 			this.resourceString = R.raw.upper_d;
+			this.videoURI = "https://dl.dropboxusercontent.com/u/276237908/dc.mp4";
 			break;
 		case 4:
 			this.info = res.getStringArray(R.array.upper_e_instructions);

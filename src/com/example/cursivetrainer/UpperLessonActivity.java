@@ -66,7 +66,14 @@ public class UpperLessonActivity extends LessonActivity {
         // Create instructions
         String stringBuilder = buildString(mLetter.info);
         TextView textView = (TextView) mLayout.findViewById(R.id.textView1);
-        textView.setText("Instructions for the letter '"+ mLetter.letter +"' \n\n" + stringBuilder);
+        if(mLetter.letter == 'Q')
+        {
+        	textView.setText("Instructions for the letter 'Qu' \n\n" + stringBuilder);
+        }
+        else
+        {
+        	textView.setText("Instructions for the letter '"+ mLetter.letter +"' \n\n" + stringBuilder);
+        }
         textView.setBackgroundColor(Color.WHITE);
         
         // Create instruction button

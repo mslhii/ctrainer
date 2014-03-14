@@ -135,11 +135,23 @@ public class DrawView extends View implements OnTouchListener {
 	public String saveImage(Bitmap bmp) 
 	{
 		File root = Environment.getExternalStorageDirectory();
+		
 	    File dir = new File(root + File.separator + "cursive_trainer_images");
 	    if(dir.isDirectory())
 	    {
 	    	dir.mkdirs();
 	    }
+	    
+	    // Nexus 7 doesn't have an emulated directory, hardcode this to prevent external emulation bug
+ 		if(!dir.exists())
+ 		{
+ 			dir = new File("/sdcard/cursive_trainer_images");
+ 			if(dir.isDirectory())
+ 		    {
+ 				dir.mkdirs();
+ 		    }
+ 		}
+	    
 	    String fname = "CursiveLetter-"+ System.currentTimeMillis() +".jpg";
 	    File file = new File (dir, fname);
 	    if (file.exists()) 
