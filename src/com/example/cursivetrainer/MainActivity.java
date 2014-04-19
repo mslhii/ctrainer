@@ -24,6 +24,7 @@ public class MainActivity extends Activity {
 	private ImageButton mLessonBtn;
 	private ImageButton mWordBtn;
 	private ImageButton mFreeBtn;
+	private Button mAboutButton;
 	
 	private final static int LESSON_ALL = 0;
 	private final static int LESSON_ONE = 1;
@@ -34,6 +35,9 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        // Set about button
+        SetAboutButton();
         
         // Set lower case practice button
         SetLowerPracticeButton();
@@ -52,6 +56,27 @@ public class MainActivity extends Activity {
         
         // Set upper case lesson button
         SetUpperLessonButton();
+    }
+    
+    private void SetAboutButton()
+    {
+    	mAboutButton = (Button) findViewById(R.id.about);
+    	mAboutButton.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+            	AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage("Copyright Mustard Seed 2014")
+                       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                           public void onClick(DialogInterface dialog, int id) {
+                           }
+                       })
+                       .setTitle("About")
+                       .setIcon(R.drawable.small_logo);                		
+                // Create the AlertDialog object and return it
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
     }
     
     private void SetLowerPracticeButton()

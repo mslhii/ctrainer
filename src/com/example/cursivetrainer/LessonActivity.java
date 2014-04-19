@@ -10,11 +10,20 @@
 
 package com.example.cursivetrainer;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +34,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.VideoView;
 
@@ -71,54 +81,61 @@ public abstract class LessonActivity extends DrawActivity {
         {      	
             @Override
             public void onClick(View v) {
-            	final VideoView videoview;
-            	progressDialog = ProgressDialog.show(LessonActivity.this, "", "Loading...", true);
-                AlertDialog.Builder builder = new AlertDialog.Builder(LessonActivity.this);
-                LayoutInflater inflater = LessonActivity.this.getLayoutInflater();  
-                builder.setTitle("Video Tutorial");
-                builder.setView(inflater.inflate(R.layout.video_dialog, null))
-                       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                           public void onClick(DialogInterface dialog, int id) {
-                           }
-                       })
-                       .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                           public void onClick(DialogInterface dialog, int id) {
-                               // User cancelled the dialog
-                        	   //videoview.start();
-                        	   //videoview.seekTo(0);
-                           }
-                       });
-                // Create the AlertDialog object and return it
-                AlertDialog alert = builder.create();
-                alert.show();
-                
-                // Fixes Nexus 7 window dimming bug
-                WindowManager.LayoutParams dimness = alert.getWindow().getAttributes();
-                dimness.dimAmount = 0;
-                alert.getWindow().setAttributes(dimness);
-                
-                // Play the video after the view has been set
-                videoview = (VideoView) alert.findViewById(R.id.videoview);
-                Uri uri;
-                //if (mLetter.videoString != INVALID_RESOURCE)
-                if (mLetter.videoURI != null)
-                {
-                	//uri = Uri.parse("android.resource://"+getPackageName()+"/"+mLetter.videoString);
-                	uri = Uri.parse(mLetter.videoURI);
-                }
-                else //TODO: fix this when instructions created
-                {
-                	//uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.rollin);
-                	//TODO: error handling?
-                	uri = Uri.parse("https://dl.dropboxusercontent.com/u/22280001/tmac.mp4");
-                }
-                videoview.setVideoURI(uri);
-                videoview.start();  
-                progressDialog.dismiss();
-                videoview.requestFocus();
-            	
-            	Log.d(TAG, "Video button pressed!");
-            }
+            	if(isNetworkAvailable())
+            	{
+            		final VideoView videoview;
+	            	progressDialog = ProgressDialog.show(LessonActivity.this, "", "Loading...", true);
+	                AlertDialog.Builder builder = new AlertDialog.Builder(LessonActivity.this);
+	                LayoutInflater inflater = LessonActivity.this.getLayoutInflater();  
+	                builder.setTitle("Video Tutorial");
+	                builder.setView(inflater.inflate(R.layout.video_dialog, null))
+	                       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+	                           public void onClick(DialogInterface dialog, int id) {
+	                           }
+	                       })
+	                       .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+	                           public void onClick(DialogInterface dialog, int id) {
+	                               // User cancelled the dialog
+	                        	   //videoview.start();
+	                        	   //videoview.seekTo(0);
+	                           }
+	                       });
+	                // Create the AlertDialog object and return it
+	                AlertDialog alert = builder.create();
+	                alert.show();
+	                
+	                // Fixes Nexus 7 window dimming bug
+	                WindowManager.LayoutParams dimness = alert.getWindow().getAttributes();
+	                dimness.dimAmount = 0;
+	                alert.getWindow().setAttributes(dimness);
+	                
+	                // Play the video after the view has been set
+	                videoview = (VideoView) alert.findViewById(R.id.videoview);
+	                Uri uri;
+	                //if (mLetter.videoString != INVALID_RESOURCE)
+	                if (mLetter.videoURI != null)
+	                {
+	                	//uri = Uri.parse("android.resource://"+getPackageName()+"/"+mLetter.videoString);
+	                	uri = Uri.parse(mLetter.videoURI);
+	                	videoview.setVideoURI(uri);
+	                    videoview.start();  
+	                    progressDialog.dismiss();
+	                    videoview.requestFocus();
+	                }
+	                else
+	                {
+	                	Toast.makeText(LessonActivity.this,
+	                    		"Video cannot be played. Illegal letter selected.", Toast.LENGTH_SHORT).show();
+	                }
+	            	
+	            	Log.d(TAG, "Video button pressed!");
+	            }
+	            else
+	            {
+	            	Toast.makeText(LessonActivity.this,
+	                		"Video cannot be played. Please check your internet connection.", Toast.LENGTH_SHORT).show();
+	            }
+            }	
         });
 	}
 	
@@ -155,7 +172,9 @@ public abstract class LessonActivity extends DrawActivity {
                 alert.show();
                 
                 final ImageView iv = (ImageView) alert.findViewById(R.id.imageview);
-                iv.setImageResource(mLetter.resourceString);
+                //iv.setImageResource(mLetter.resourceString);
+                
+                new DownloadImageTask(iv).execute(mLetter.imageString);
             	
             	Log.d(TAG, "Instruction button pressed!");
             }
@@ -264,6 +283,31 @@ public abstract class LessonActivity extends DrawActivity {
                 alert.show();
             }
         });
+	}
+	
+	private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+	    ImageView bmImage;
+
+	    public DownloadImageTask(ImageView bmImage) {
+	        this.bmImage = bmImage;
+	    }
+
+	    protected Bitmap doInBackground(String... urls) {
+	        String urldisplay = urls[0];
+	        Bitmap mIcon11 = null;
+	        try {
+	            InputStream in = new java.net.URL(urldisplay).openStream();
+	            mIcon11 = BitmapFactory.decodeStream(in);
+	        } catch (Exception e) {
+	            Log.e("Error", e.getMessage());
+	            e.printStackTrace();
+	        }
+	        return mIcon11;
+	    }
+
+	    protected void onPostExecute(Bitmap result) {
+	        bmImage.setImageBitmap(result);
+	    }
 	}
 }
 

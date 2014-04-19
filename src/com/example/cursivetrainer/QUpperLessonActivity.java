@@ -1,5 +1,5 @@
 /**
- * LowerLessonActivity.java
+ * LessonActivity.java
  * 
  * Activity class that creates interface with user to learn how to write cursive characters
  * Creates button to display video alert, instruction sidebar, and picture answer
@@ -12,15 +12,21 @@
 
 package com.example.cursivetrainer;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.RelativeLayout.LayoutParams;
 
-public class LowerLessonActivity extends LessonActivity {
+public class QUpperLessonActivity extends LessonActivity {
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,13 +35,11 @@ public class LowerLessonActivity extends LessonActivity {
 		mLayout = (RelativeLayout) findViewById(getLayoutID());
 		
 		// Get parameter from main activity
-		int lessonChoice = INVALID_SELECTION;
 		Bundle extras = getIntent().getExtras();
-		if (extras != null) 
-		{
-		    mLessonChoice = lessonChoice = extras.getInt("LESSON_ID");
+		if (extras != null) {
+		    mLessonChoice = extras.getInt("LESSON_ID");
 		    mLoopNumber = extras.getInt("LOOP_NUMBER");
-		    mLetterPick = extras.getInt("LETTER_PICK"); //letter or group choice from picker
+		    mLetterPick = extras.getInt("LETTER_PICK");
 		}
 		
 		// Determine which lesson mode we need to enter
@@ -45,18 +49,17 @@ public class LowerLessonActivity extends LessonActivity {
 		
 		try
 		{
-			switch(lessonChoice)
+			switch(mLessonChoice)
 			{
 			case 0:
-			case 3:
-				mLetter.determineLowerLetter(mLoopNumber, res);
+				mLetter.determineUpperLetter(mLoopNumber, res);
 				break;
 			case 1:
-				mLetter.determineLowerLetter(mLetterPick, res);
+				mLetter.determineUpperLetter(mLetterPick, res);
 				break;
 			case 2:
 				int rand = getRand();
-				mLetter.determineLowerLetter(rand, res);
+				mLetter.determineUpperLetter(rand, res);
 				break;
 			default:
 				break;
@@ -66,21 +69,10 @@ public class LowerLessonActivity extends LessonActivity {
 			e.printStackTrace();
 		}
 		
-		// Starting a new activity for q is easier than dynamically switching views
-		if(mLetter.letter == 'q')
-		{
-			Intent intent = new Intent(getBaseContext(), QLowerLessonActivity.class);
-        	
-        	intent.putExtra("LESSON_ID", mLessonChoice);
-        	intent.putExtra("LOOP_NUMBER", mLoopNumber);
-        	intent.putExtra("LETTER_PICK", mLetterPick);
-     	   	startActivity(intent);
-		}
-        
         // Create instructions
         String stringBuilder = buildString(mLetter.info);
         TextView textView = (TextView) mLayout.findViewById(R.id.textView1);
-    	textView.setText("Instructions for the letter '"+ mLetter.letter +"' \n\n" + stringBuilder);
+    	textView.setText("Instructions for the letter 'Qu' \n\n" + stringBuilder);
         textView.setBackgroundColor(Color.WHITE);
         
         // Create instruction button
@@ -105,13 +97,36 @@ public class LowerLessonActivity extends LessonActivity {
 	@Override
 	protected int getLayoutID() {
 		// TODO Auto-generated method stub
-		return R.id.drawlesson_layout;
+		return R.id.capitallesson_qu_layout;
 	}
 
 	@Override
 	protected int getViewID() {
 		// TODO Auto-generated method stub
-		return R.layout.draw_lesson_layout;
+		return R.layout.capital_lesson_qu_layout;
+	}
+	
+	protected void createNextButton()
+	{
+		Button b = new Button(this);
+        b.setText("Next");
+        LayoutParams lp = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        lp.addRule(mLayout.ALIGN_PARENT_BOTTOM);
+        lp.addRule(mLayout.ALIGN_PARENT_RIGHT);
+        mLayout.addView(b, lp);
+        b.setOnClickListener(new OnClickListener()
+        {      	
+            @Override
+            public void onClick(View v) 
+            {
+            	int nextIter = mLoopNumber + 1;
+            	Intent intent = new Intent(getBaseContext(), UpperLessonActivity.class);
+            	intent.putExtra("LESSON_ID", 0);
+            	intent.putExtra("LOOP_NUMBER", nextIter);
+            	finish();
+            	startActivity(intent);
+            }
+        });
 	}
 }
 

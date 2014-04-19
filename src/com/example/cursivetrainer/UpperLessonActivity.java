@@ -12,6 +12,7 @@
 
 package com.example.cursivetrainer;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -28,10 +29,9 @@ public class UpperLessonActivity extends LessonActivity {
 		mLayout = (RelativeLayout) findViewById(getLayoutID());
 		
 		// Get parameter from main activity
-		int lessonChoice = INVALID_SELECTION;
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
-		    lessonChoice = extras.getInt("LESSON_ID");
+		    mLessonChoice = extras.getInt("LESSON_ID");
 		    mLoopNumber = extras.getInt("LOOP_NUMBER");
 		    mLetterPick = extras.getInt("LETTER_PICK");
 		}
@@ -43,7 +43,7 @@ public class UpperLessonActivity extends LessonActivity {
 		
 		try
 		{
-			switch(lessonChoice)
+			switch(mLessonChoice)
 			{
 			case 0:
 				mLetter.determineUpperLetter(mLoopNumber, res);
@@ -62,18 +62,22 @@ public class UpperLessonActivity extends LessonActivity {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		// Starting a new activity for q is easier than dynamically switching views
+		if(mLetter.letter == 'Q')
+		{
+			Intent intent = new Intent(getBaseContext(), QUpperLessonActivity.class);
+        	
+        	intent.putExtra("LESSON_ID", mLessonChoice);
+        	intent.putExtra("LOOP_NUMBER", mLoopNumber);
+        	intent.putExtra("LETTER_PICK", mLetterPick);
+     	   	startActivity(intent);
+		}
         
         // Create instructions
         String stringBuilder = buildString(mLetter.info);
         TextView textView = (TextView) mLayout.findViewById(R.id.textView1);
-        if(mLetter.letter == 'Q')
-        {
-        	textView.setText("Instructions for the letter 'Qu' \n\n" + stringBuilder);
-        }
-        else
-        {
-        	textView.setText("Instructions for the letter '"+ mLetter.letter +"' \n\n" + stringBuilder);
-        }
+    	textView.setText("Instructions for the letter '"+ mLetter.letter +"' \n\n" + stringBuilder);
         textView.setBackgroundColor(Color.WHITE);
         
         // Create instruction button
